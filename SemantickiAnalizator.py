@@ -5,7 +5,7 @@ __author__ = 'Matko'
 
 def ucitajUlaz():
     ulaz = open("ulaz1.in","r")
-    dict = {}
+    stablo = {}
 
     for line in ulaz:
         trenutnaDubina = 0
@@ -19,11 +19,20 @@ def ucitajUlaz():
                 break
         stringLine = ''.join(listLine)
         stringLine.strip()
+        print stringLine
+
+        if trenutnaDubina not in stablo:
+            stablo[trenutnaDubina] = []
+
+        stablo[trenutnaDubina].append(stringLine)
+
+    return stablo
 
 
 def main ():
 
     stablo = ucitajUlaz()
+    print stablo
 
 
 
