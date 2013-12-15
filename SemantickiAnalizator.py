@@ -18,13 +18,8 @@ def ucitajUlaz():
             else:
                 break
         stringLine = ''.join(listLine)
-        stringLine.strip()
-        print stringLine
+        stringLine = stringLine.lstrip()
 
-        if trenutnaDubina not in stablo:
-            stablo[trenutnaDubina] = []
-
-        stablo[trenutnaDubina].append(stringLine)
 
     return stablo
 
