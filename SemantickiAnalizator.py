@@ -34,17 +34,16 @@ class PrijevodnaJedinica(object):
             else:
                 break
 
-            #provjeri jesmo li našli sve elemente desne strane
-            if brojRazmaka == noviBrojRazmaka:
+            #provjeri jesmo li nasli sve elemente desne strane
+            if noviBrojRazmaka <= brojRazmaka:
                 break
 
-            #provjeri je li to traženi element
+            #provjeri je li to trazeni element
             elif noviBrojRazmaka == brojRazmaka + 1:
                 tmp = self.listaPrograma[novaPozicija]
                 tmp = tmp.strip()
                 element.append(tmp)
                 indeks.append(novaPozicija)
-
 
             #pomakni poziciju
             novaPozicija += 1
