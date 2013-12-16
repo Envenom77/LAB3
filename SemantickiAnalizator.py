@@ -61,12 +61,12 @@ class PrijevodnaJedinica(object):
             rezultat = vanjska_deklaracija.glavnaMetoda()
             if rezultat != 0:
                 return rezultat
+
         elif desnaStrana[0][0] == "<prijevodna_jedinica>":
             prijevodna_jedinica = PrijevodnaJedinica(self.listaPrograma,desnaStrana[0][1])
             rezultat = prijevodna_jedinica.glavnaMetoda()
             if rezultat != 0:
                 return rezultat
-
             vanjska_deklaracija = VanjskaDeklaracija(desnaStrana[1][1])
             rezultat = vanjska_deklaracija.glavnaMetoda()
             if rezultat != 0:
@@ -87,7 +87,7 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
 
 
 def ucitajUlaz():
-    ulaz = open("ulaz1.in","r")
+    ulaz = open("ulaz2.in","r")
     listaPrograma = ulaz.readlines()
 
     #makni LF
