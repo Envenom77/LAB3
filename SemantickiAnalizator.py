@@ -32,7 +32,7 @@ class PrijevodnaJedinica(object):
         while noviBrojRazmaka != brojRazmaka:
 
             if noviBrojRazmaka == brojRazmaka + 1:
-                tmp = self.listaPrograma[noviBrojRazmaka]
+                tmp = self.listaPrograma[novaPozicija]
                 tmp = tmp.strip()
                 element.append(tmp)
                 indeks.append(novaPozicija)
