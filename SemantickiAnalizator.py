@@ -3,12 +3,13 @@ __author__ = 'Matko'
 
 class PrijevodnaJedinica(object):
 
-    def __init__(self,listaPrograma,pozicijaUprogramu):
-        self.listaPrograma = listaPrograma
+    listaPrograma = []
+
+    def __init__(self,pozicijaUprogramu):
         self.pozicijaUprogramu = pozicijaUprogramu
 
-    def nadiBrojRazmaka(self,lista,pozicija):
-        tmp = lista[pozicija]
+    def nadiBrojRazmaka(self,pozicija):
+        tmp = self.listaPrograma[pozicija]
         list(tmp)
         br = 0
         for i in range(len(tmp)):
@@ -18,19 +19,19 @@ class PrijevodnaJedinica(object):
                 break
         return br
 
-    def nadiDesnuStranu(self,lista,pozicija):
+    def nadiDesnuStranu(self,pozicija):
 
         desnaStrana = []
         element = []
         indeks = []
 
-        brojRazmaka = self.nadiBrojRazmaka(lista,pozicija)
+        brojRazmaka = self.nadiBrojRazmaka(pozicija)
         novaPozicija = pozicija + 1
         #while noviBrojRazmaka != brojRazmaka:
         while 1:
             #provjera kraja programa, jesmo li doli do kraja liste
-            if novaPozicija < len(lista):
-                noviBrojRazmaka = self.nadiBrojRazmaka(lista,novaPozicija)
+            if novaPozicija < len(self.listaPrograma):
+                noviBrojRazmaka = self.nadiBrojRazmaka(self.listaPrograma, novaPozicija)
             else:
                 break
 
@@ -40,7 +41,7 @@ class PrijevodnaJedinica(object):
 
             #provjeri je li to trazeni element
             elif noviBrojRazmaka == brojRazmaka + 1:
-                tmp =lista[novaPozicija]
+                tmp = self.listaPrograma[novaPozicija]
                 tmp = tmp.strip()
                 element.append(tmp)
                 indeks.append(novaPozicija)
@@ -48,17 +49,19 @@ class PrijevodnaJedinica(object):
             #pomakni poziciju
             novaPozicija += 1
 
-        desnaStrana = zip(element,indeks)
+        desnaStrana = zip(element, indeks)
         return desnaStrana
 
     def glavnaMetoda(self):
+
+        self.listaPrograma = ucitajUlaz()
 
         #nalazi svoju desnu stranu preko matode koja nalazi desnu stranu
         #poznavajuci samo indeks u listi programa
         #tako ce se metoda nadiDesnuStranu moci koristit od strane svih objekata koji ju naslijede
 
         #desna strana dobija listu stvorenu od elemenata od dva clana, prvi je element, a drugi pozicija u listi
-        desnaStrana = self.nadiDesnuStranu(self.listaPrograma,self.pozicijaUprogramu)
+        desnaStrana = self.nadiDesnuStranu(self.pozicijaUprogramu)
 
         if desnaStrana[0][0] == "<vanjska_deklaracija>":
             vanjska_deklaracija = VanjskaDeklaracija(desnaStrana[0][1])
@@ -88,7 +91,7 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
 
     def glavnaMetoda(self):
 
-        desnaStrana = super(VanjskaDeklaracija,self).nadiDesnuStranu(PrijevodnaJedinica.listaPrograma,self.pozicijaUprogramu)
+        desnaStrana = super(VanjskaDeklaracija,self).nadiDesnuStranu(self.pozicijaUprogramu)
         print desnaStrana
 
         return 0
@@ -105,14 +108,8 @@ def ucitajUlaz():
 
 def main ():
 
-    listaPrograma = ucitajUlaz()
-    print listaPrograma
-
-    if listaPrograma[0] != "<prijevodna_jedinica>":
-        print "ERROR - nema prijevodne jedinice"
-
     #stvori inicijalni objekt
-    prijevodna_jedinica = PrijevodnaJedinica(listaPrograma,0)
+    prijevodna_jedinica = PrijevodnaJedinica(0)
     rezultat = prijevodna_jedinica.glavnaMetoda()
 
     #je li doslo do pogreske, ako je 0 => sve u redu
