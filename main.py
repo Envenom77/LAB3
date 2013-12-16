@@ -6,7 +6,7 @@ globalnaTablica = {}
 
 def nadiDesnuStranu(trenPozicija):
 	brojRazmaka = nadiBrojRazmaka
-	nadi sve elemente sa broRazmaka + 1 and dok ne naides na elemnt sa brrazmaka < brRazmaka
+	nadi sve elemente sa broRazmaka + 1 and dok ne naides na elemnt sa brrazmaka == brRazmaka
 	vrati DesnuStranu
 
 Class PrijevodnJedinica(object):
