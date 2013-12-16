@@ -48,9 +48,6 @@ class PrijevodnaJedinica(object):
             #pomakni poziciju
             novaPozicija += 1
 
-
-
-
         desnaStrana = zip(element,indeks)
         return desnaStrana
 
