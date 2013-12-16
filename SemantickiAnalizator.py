@@ -7,8 +7,8 @@ class PrijevodnaJedinica(object):
         self.listaPrograma = listaPrograma
         self.pozicijaUprogramu = pozicijaUprogramu
 
-    def nadiBrojRazmaka(self,pozicija):
-        tmp = PrijevodnaJedinica.listaPrograma[pozicija]
+    def nadiBrojRazmaka(self,lista,pozicija):
+        tmp = lista[pozicija]
         list(tmp)
         br = 0
         for i in range(len(tmp)):
@@ -18,19 +18,19 @@ class PrijevodnaJedinica(object):
                 break
         return br
 
-    def nadiDesnuStranu(self,pozicija):
+    def nadiDesnuStranu(self,lista,pozicija):
 
         desnaStrana = []
         element = []
         indeks = []
 
-        brojRazmaka = self.nadiBrojRazmaka(pozicija)
+        brojRazmaka = self.nadiBrojRazmaka(lista,pozicija)
         novaPozicija = pozicija + 1
         #while noviBrojRazmaka != brojRazmaka:
         while 1:
             #provjera kraja programa, jesmo li doli do kraja liste
-            if novaPozicija < len(self.listaPrograma):
-                noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
+            if novaPozicija < len(lista):
+                noviBrojRazmaka = self.nadiBrojRazmaka(lista,novaPozicija)
             else:
                 break
 
@@ -40,7 +40,7 @@ class PrijevodnaJedinica(object):
 
             #provjeri je li to trazeni element
             elif noviBrojRazmaka == brojRazmaka + 1:
-                tmp = self.listaPrograma[novaPozicija]
+                tmp =lista[novaPozicija]
                 tmp = tmp.strip()
                 element.append(tmp)
                 indeks.append(novaPozicija)
@@ -58,7 +58,7 @@ class PrijevodnaJedinica(object):
         #tako ce se metoda nadiDesnuStranu moci koristit od strane svih objekata koji ju naslijede
 
         #desna strana dobija listu stvorenu od elemenata od dva clana, prvi je element, a drugi pozicija u listi
-        desnaStrana = self.nadiDesnuStranu(self.pozicijaUprogramu)
+        desnaStrana = self.nadiDesnuStranu(self.listaPrograma,self.pozicijaUprogramu)
 
         if desnaStrana[0][0] == "<vanjska_deklaracija>":
             vanjska_deklaracija = VanjskaDeklaracija(desnaStrana[0][1])
@@ -88,7 +88,7 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
 
     def glavnaMetoda(self):
 
-        desnaStrana = PrijevodnaJedinica.nadiDesnuStranu(self,self.pozicijaUprogramu)
+        desnaStrana = PrijevodnaJedinica.nadiDesnuStranu(self,PrijevodnaJedinica.listaPrograma,self.pozicijaUprogramu)
         print desnaStrana
 
         return 0
