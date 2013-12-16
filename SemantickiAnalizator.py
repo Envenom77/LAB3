@@ -8,7 +8,7 @@ class PrijevodnaJedinica(object):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def nadiBrojRazmaka(self,pozicija):
-        tmp = self.listaPrograma[pozicija]
+        tmp = PrijevodnaJedinica.listaPrograma[pozicija]
         list(tmp)
         br = 0
         for i in range(len(tmp)):
@@ -87,11 +87,15 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def glavnaMetoda(self):
+
+        desnaStrana = PrijevodnaJedinica.nadiDesnuStranu(self,self.pozicijaUprogramu)
+        print desnaStrana
+
         return 0
 
 
 def ucitajUlaz():
-    ulaz = open("ulaz2.in","r")
+    ulaz = open("ulaz1.in","r")
     listaPrograma = ulaz.readlines()
 
     #makni LF
