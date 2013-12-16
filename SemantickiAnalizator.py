@@ -20,7 +20,23 @@ class PrijevodnaJedinica(object):
 
 
     def nadiDesnuStranu(self,pozicija):
+
+        desnaStrana = []
+
         brojRazmaka = self.nadiBrojRazmaka(pozicija)
+
+        novaPozicija = pozicija + 1
+        noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
+
+        while noviBrojRazmaka != brojRazmaka:
+            if noviBrojRazmaka == brojRazmaka + 1:
+                tmp = self.listaPrograma[noviBrojRazmaka]
+                tmp = tmp.strip()
+                desnaStrana.append(tmp)
+            novaPozicija += 1
+            noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
+
+        return desnaStrana
 
 
 
@@ -28,9 +44,12 @@ class PrijevodnaJedinica(object):
     def glavnaMetoda(self):
 
         #nalazi svoju desnu stranu preko matode koja nalazi desnu stranu
-        #poznavajuci samo indekst u listi programa
+        #poznavajuci samo indeks u listi programa
         #tako ce se metoda nadiDesnuStranu moci koristit od strane svih objekata koji ju naslijede
+
         desnaStrana = self.nadiDesnuStranu(self.pozicijaUprogramu)
+
+        return 0
 
 
 
