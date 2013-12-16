@@ -53,13 +53,24 @@ class PrijevodnaJedinica(object):
         #poznavajuci samo indeks u listi programa
         #tako ce se metoda nadiDesnuStranu moci koristit od strane svih objekata koji ju naslijede
 
-        #desna strana dobija listu stvorenu od elemenata od dva clana, prvi je elemtn, a drugi pozicija u listi
+        #desna strana dobija listu stvorenu od elemenata od dva clana, prvi je element, a drugi pozicija u listi
         desnaStrana = self.nadiDesnuStranu(self.pozicijaUprogramu)
 
         if desnaStrana[0][0] == "<vanjska_deklaracija>":
-            pass
+            vanjska_deklaracija = VanjskaDeklaracija(desnaStrana[0][1])
+            rezultat = vanjska_deklaracija.glavnaMetoda()
+            if rezultat != 0:
+                return rezultat
         elif desnaStrana[0][0] == "<prijevodna_jedinica>":
-            pass
+            prijevodna_jedinica = PrijevodnaJedinica(self.listaPrograma,desnaStrana[0][1])
+            rezultat = prijevodna_jedinica.glavnaMetoda()
+            if rezultat != 0:
+                return rezultat
+
+            vanjska_deklaracija = VanjskaDeklaracija(desnaStrana[1][1])
+            rezultat = vanjska_deklaracija.glavnaMetoda()
+            if rezultat != 0:
+                return rezultat
         else:
             return "ERROR - losa desna strana prijevodne jedinice"
 
@@ -70,6 +81,9 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
 
     def __init__(self,pozicijaUprogramu):
         self.pozicijaUprogramu = pozicijaUprogramu
+
+    def glavnaMetoda(self):
+        return 0
 
 
 def ucitajUlaz():
