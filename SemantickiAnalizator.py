@@ -7,8 +7,8 @@ class PrijevodnaJedinica(object):
         self.listaPrograma = listaPrograma
         self.pozicijaUprogramu = pozicijaUprogramu
 
-    def nadiBrojRazmaka(self):
-        tmp = self.listaPrograma[self.pozicijaUprogramu]
+    def nadiBrojRazmaka(self,pozicija):
+        tmp = self.listaPrograma[pozicija]
         list(tmp)
         br = 0
         for i in range(len(tmp)):
@@ -19,14 +19,18 @@ class PrijevodnaJedinica(object):
         return br
 
 
-    def nadiDesnuStranu(self):
-        brojRazmaka = self.nadiBrojRazmaka()
+    def nadiDesnuStranu(self,pozicija):
+        brojRazmaka = self.nadiBrojRazmaka(pozicija)
+
 
 
 
     def glavnaMetoda(self):
 
-        desnaStrana = self.nadiDesnuStranu()
+        #nalazi svoju desnu stranu preko matode koja nalazi desnu stranu
+        #poznavajuci samo indekst u listi programa
+        #tako ce se metoda nadiDesnuStranu moci koristit od strane svih objekata koji ju naslijede
+        desnaStrana = self.nadiDesnuStranu(self.pozicijaUprogramu)
 
 
 
