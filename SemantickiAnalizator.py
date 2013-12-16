@@ -25,24 +25,32 @@ class PrijevodnaJedinica(object):
         indeks = []
 
         brojRazmaka = self.nadiBrojRazmaka(pozicija)
-
         novaPozicija = pozicija + 1
-        noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
-
-        while noviBrojRazmaka != brojRazmaka:
-
-            if noviBrojRazmaka == brojRazmaka + 1:
-                tmp = self.listaPrograma[novaPozicija]
-                tmp = tmp.strip()
-                element.append(tmp)
-                indeks.append(novaPozicija)
-            novaPozicija += 1
-
+        #while noviBrojRazmaka != brojRazmaka:
+        while 1:
             #provjera kraja programa, jesmo li doli do kraja liste
             if novaPozicija < len(self.listaPrograma):
                 noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
             else:
                 break
+
+            #provjeri jesmo li našli sve elemente desne strane
+            if brojRazmaka == noviBrojRazmaka:
+                break
+
+            #provjeri je li to traženi element
+            elif noviBrojRazmaka == brojRazmaka + 1:
+                tmp = self.listaPrograma[novaPozicija]
+                tmp = tmp.strip()
+                element.append(tmp)
+                indeks.append(novaPozicija)
+
+
+            #pomakni poziciju
+            novaPozicija += 1
+
+
+
 
         desnaStrana = zip(element,indeks)
         return desnaStrana
