@@ -8,12 +8,32 @@ def nadiDesnuStranu(trenPozicija):
 	brojRazmaka = nadiBrojRazmaka
 	nadi sve elemente sa broRazmaka + 1 and dok ne naides na elemnt sa brrazmaka < brRazmaka
 	vrati DesnuStranu
-	
-Class PrimarniIzraz(object):
 
+Class VanjskaDeklaracija(PrimarniIzraz):
+	
 	def __init__(self):
 		pass
 	
-	def primjeni(self):
+
+Class PrijevodnaJedinica(PrimarniIzraz):
+	
+	def __init__(self):
+		pass
+	
+
+	
+	
+	
+Class PrimarniIzraz(object):
+	 i = 0
+
+	def __init__(self):
+		pass
+	def sam(self, i,p):
+		pass
+	
+	
+	
+
 		
 	
