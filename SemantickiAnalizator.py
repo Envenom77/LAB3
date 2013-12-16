@@ -29,13 +29,18 @@ class PrijevodnaJedinica(object):
         noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
 
         while noviBrojRazmaka != brojRazmaka:
+            print novaPozicija
             if noviBrojRazmaka == brojRazmaka + 1:
                 tmp = self.listaPrograma[noviBrojRazmaka]
                 tmp = tmp.strip()
                 desnaStrana.append(tmp)
             novaPozicija += 1
-            noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
 
+            #provjera kraja programa, jesmo li doli do kraja liste
+            if novaPozicija < len(self.listaPrograma):
+                noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
+            else:
+                break
         return desnaStrana
 
 
