@@ -88,7 +88,7 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
 
     def glavnaMetoda(self):
 
-        desnaStrana = PrijevodnaJedinica.nadiDesnuStranu(self,PrijevodnaJedinica.listaPrograma,self.pozicijaUprogramu)
+        desnaStrana = super(VanjskaDeklaracija,self).nadiDesnuStranu(PrijevodnaJedinica.listaPrograma,self.pozicijaUprogramu)
         print desnaStrana
 
         return 0
