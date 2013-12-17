@@ -1,5 +1,9 @@
 __author__ = 'Matko'
 
+from itertools import repeat
+import sys
+
+
 listaPrograma = []
 
 def nadiBrojRazmaka(pozicija):
@@ -147,10 +151,13 @@ class ImeTipa(DefinicijaFunkcije):
         if desnaStrana[0][0] == "<specifikator_tipa>":
             specifikator_tipa = SpecifikatorTipa(desnaStrana[0][1])
             tip = specifikator_tipa.glavnaMetoda()
-            if tip != "void" or tip != "char" or tip != "int":
+            print tip
+            if tip != "void" and tip != "char" and tip != "int":
                 return "ERROR - nema tipa"
             else:
-                return tip
+                rezultat = [[] for i in repeat(None, 1)]
+                rezultat[0][0] = tip
+                rezultat[0][1] = 0
         else:
             specifikator_tipa = SpecifikatorTipa(desnaStrana[0][1])
             tip = specifikator_tipa.glavnaMetoda()
@@ -158,9 +165,11 @@ class ImeTipa(DefinicijaFunkcije):
             if tip == "void":
                 return "ERROR - konstanta ne moze biti void"
             else:
-                return tip
+                rezultat = [[] for i in repeat(None, 1)]
+                rezultat[0][0] = tip
+                rezultat[0][1] = 1
 
-        return 0
+        return rezultat
 
 class ListaParametara(DefinicijaFunkcije):
 
