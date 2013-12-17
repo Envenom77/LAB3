@@ -174,6 +174,24 @@ class SpecifikatorTipa(ImeTipa):
         desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
         print desnaStrana
 
+        tmp = desnaStrana[0][0]
+        tmp = list(tmp)
+        print tmp
+
+        for i in range(len(tmp)):
+            if tmp[i] == ' ':
+                kraj = i
+                break
+
+        del tmp[kraj:]
+        tip = ''.join(tmp)
+
+        if tip == 'KR_VOID':
+            return "void"
+        elif tip == 'KR_CHAR':
+            return "char"
+        elif tip == 'KR_INT':
+            return "int"
 
         return 0
 
