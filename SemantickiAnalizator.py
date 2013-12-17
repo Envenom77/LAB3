@@ -5,7 +5,7 @@ class PrijevodnaJedinica(object):
 
     listaPrograma = []
 
-    def __init__(self,pozicijaUprogramu):
+    def __init__(self, pozicijaUprogramu):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def nadiBrojRazmaka(self, pozicija):
