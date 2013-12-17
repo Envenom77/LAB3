@@ -1,7 +1,10 @@
 __author__ = 'Matko'
 
-def nadiBrojRazmaka(self, pozicija):
-    tmp = self.listaPrograma[pozicija]
+listaPrograma = []
+
+def nadiBrojRazmaka(pozicija):
+    global listaPrograma
+    tmp = listaPrograma[pozicija]
     list(tmp)
     br = 0
     for i in range(len(tmp)):
@@ -11,19 +14,19 @@ def nadiBrojRazmaka(self, pozicija):
             break
     return br
 
-def nadiDesnuStranu(self, pozicija):
-
+def nadiDesnuStranu(pozicija):
+    global listaPrograma
     desnaStrana = []
     element = []
     indeks = []
 
-    brojRazmaka = self.nadiBrojRazmaka(pozicija)
+    brojRazmaka = nadiBrojRazmaka(pozicija)
     novaPozicija = pozicija + 1
     #while noviBrojRazmaka != brojRazmaka:
     while 1:
         #provjera kraja programa, jesmo li doli do kraja liste
-        if novaPozicija < len(self.listaPrograma):
-            noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
+        if novaPozicija < len(listaPrograma):
+            noviBrojRazmaka = nadiBrojRazmaka(novaPozicija)
         else:
             break
 
@@ -33,7 +36,7 @@ def nadiDesnuStranu(self, pozicija):
 
         #provjeri je li to trazeni element
         elif noviBrojRazmaka == brojRazmaka + 1:
-            tmp = self.listaPrograma[novaPozicija]
+            tmp = listaPrograma[novaPozicija]
             tmp = tmp.strip()
             element.append(tmp)
             indeks.append(novaPozicija)
@@ -46,21 +49,17 @@ def nadiDesnuStranu(self, pozicija):
 
 class PrijevodnaJedinica(object):
 
-    listaPrograma = []
-
     def __init__(self, pozicijaUprogramu):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def glavnaMetoda(self):
-
-        self.listaPrograma = ucitajUlaz()
 
         #nalazi svoju desnu stranu preko matode koja nalazi desnu stranu
         #poznavajuci samo indeks u listi programa
         #tako ce se metoda nadiDesnuStranu moci koristit od strane svih objekata koji ju naslijede
 
         #desna strana dobija listu stvorenu od elemenata od dva clana, prvi je element, a drugi pozicija u listi
-        desnaStrana = self.nadiDesnuStranu(self.pozicijaUprogramu)
+        desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
 
         if desnaStrana[0][0] == "<vanjska_deklaracija>":
             vanjska_deklaracija = VanjskaDeklaracija(desnaStrana[0][1])
@@ -103,6 +102,10 @@ def ucitajUlaz():
     return listaPrograma
 
 def main ():
+
+    global listaPrograma
+
+    listaPrograma = ucitajUlaz()
 
     #stvori inicijalni objekt
     prijevodna_jedinica = PrijevodnaJedinica(0)
