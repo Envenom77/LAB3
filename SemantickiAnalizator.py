@@ -146,11 +146,19 @@ class ImeTipa(DefinicijaFunkcije):
 
         if desnaStrana[0][0] == "<specifikator_tipa>":
             specifikator_tipa = SpecifikatorTipa(desnaStrana[0][1])
-            rezultat = specifikator_tipa.glavnaMetoda()
-            if rezultat != 0:
-                return rezultat
+            tip = specifikator_tipa.glavnaMetoda()
+            if tip != "void" or tip != "char" or tip != "int":
+                return "ERROR - nema tipa"
+            else:
+                return tip
         else:
-            pass
+            specifikator_tipa = SpecifikatorTipa(desnaStrana[0][1])
+            tip = specifikator_tipa.glavnaMetoda()
+
+            if tip == "void":
+                return "ERROR - konstanta ne moze biti void"
+            else:
+                return tip
 
         return 0
 
