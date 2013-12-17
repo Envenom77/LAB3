@@ -9,7 +9,7 @@ class PrijevodnaJedinica(object):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def nadiBrojRazmaka(self, pozicija):
-        tmp = type(self).listaPrograma[pozicija]
+        tmp = self.listaPrograma[pozicija]
         list(tmp)
         br = 0
         for i in range(len(tmp)):
@@ -30,7 +30,7 @@ class PrijevodnaJedinica(object):
         #while noviBrojRazmaka != brojRazmaka:
         while 1:
             #provjera kraja programa, jesmo li doli do kraja liste
-            if novaPozicija < len(type(self).listaPrograma):
+            if novaPozicija < len(self.listaPrograma):
                 noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
             else:
                 break
@@ -41,7 +41,7 @@ class PrijevodnaJedinica(object):
 
             #provjeri je li to trazeni element
             elif noviBrojRazmaka == brojRazmaka + 1:
-                tmp = type(self).listaPrograma[novaPozicija]
+                tmp = self.listaPrograma[novaPozicija]
                 tmp = tmp.strip()
                 element.append(tmp)
                 indeks.append(novaPozicija)
@@ -90,8 +90,6 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def glavnaMetoda(self):
-
-        desnaStrana = PrijevodnaJedinica.nadiDesnuStranu(self,self.pozicijaUprogramu)
 
         return 0
 
