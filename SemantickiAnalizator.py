@@ -1,5 +1,48 @@
 __author__ = 'Matko'
 
+def nadiBrojRazmaka(self, pozicija):
+    tmp = self.listaPrograma[pozicija]
+    list(tmp)
+    br = 0
+    for i in range(len(tmp)):
+        if tmp[i] == ' ':
+            br += 1
+        else:
+            break
+    return br
+
+def nadiDesnuStranu(self, pozicija):
+
+    desnaStrana = []
+    element = []
+    indeks = []
+
+    brojRazmaka = self.nadiBrojRazmaka(pozicija)
+    novaPozicija = pozicija + 1
+    #while noviBrojRazmaka != brojRazmaka:
+    while 1:
+        #provjera kraja programa, jesmo li doli do kraja liste
+        if novaPozicija < len(self.listaPrograma):
+            noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
+        else:
+            break
+
+        #provjeri jesmo li nasli sve elemente desne strane
+        if noviBrojRazmaka <= brojRazmaka:
+            break
+
+        #provjeri je li to trazeni element
+        elif noviBrojRazmaka == brojRazmaka + 1:
+            tmp = self.listaPrograma[novaPozicija]
+            tmp = tmp.strip()
+            element.append(tmp)
+            indeks.append(novaPozicija)
+
+        #pomakni poziciju
+        novaPozicija += 1
+
+    desnaStrana = zip(element, indeks)
+    return desnaStrana
 
 class PrijevodnaJedinica(object):
 
@@ -7,50 +50,6 @@ class PrijevodnaJedinica(object):
 
     def __init__(self, pozicijaUprogramu):
         self.pozicijaUprogramu = pozicijaUprogramu
-
-    def nadiBrojRazmaka(self, pozicija):
-        tmp = self.listaPrograma[pozicija]
-        list(tmp)
-        br = 0
-        for i in range(len(tmp)):
-            if tmp[i] == ' ':
-                br += 1
-            else:
-                break
-        return br
-
-    def nadiDesnuStranu(self, pozicija):
-
-        desnaStrana = []
-        element = []
-        indeks = []
-
-        brojRazmaka = self.nadiBrojRazmaka(pozicija)
-        novaPozicija = pozicija + 1
-        #while noviBrojRazmaka != brojRazmaka:
-        while 1:
-            #provjera kraja programa, jesmo li doli do kraja liste
-            if novaPozicija < len(self.listaPrograma):
-                noviBrojRazmaka = self.nadiBrojRazmaka(novaPozicija)
-            else:
-                break
-
-            #provjeri jesmo li nasli sve elemente desne strane
-            if noviBrojRazmaka <= brojRazmaka:
-                break
-
-            #provjeri je li to trazeni element
-            elif noviBrojRazmaka == brojRazmaka + 1:
-                tmp = self.listaPrograma[novaPozicija]
-                tmp = tmp.strip()
-                element.append(tmp)
-                indeks.append(novaPozicija)
-
-            #pomakni poziciju
-            novaPozicija += 1
-
-        desnaStrana = zip(element, indeks)
-        return desnaStrana
 
     def glavnaMetoda(self):
 
