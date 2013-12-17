@@ -86,16 +86,14 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def glavnaMetoda(self):
-
         desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
-        print desnaStrana
 
         if desnaStrana[0][0] == "<definicija_funkcije>":
             definicija_funkcije = DefinicijaFunkcije(desnaStrana[0][1])
             rezultat = definicija_funkcije.glavnaMetoda()
             if rezultat != 0:
                 return rezultat
-        else:
+        elif desnaStrana[0][0] == "<deklaracija>":
             deklaracija = Deklaracija(desnaStrana[0][1])
             rezultat = deklaracija.glavnaMetoda()
             if rezultat != 0:
@@ -110,6 +108,16 @@ class DefinicijaFunkcije(VanjskaDeklaracija):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def glavnaMetoda(self):
+        desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
+        print desnaStrana
+
+        if desnaStrana[2][0] == "<lista_parametara>":
+            lista_parametara = ListaParametara(desnaStrana[2][1])
+            rezultat = lista_parametara.glavnaMetoda()
+            if rezultat != 0:
+                return rezultat
+        else:
+            pass
 
         return 0
 
@@ -122,6 +130,26 @@ class Deklaracija(VanjskaDeklaracija):
 
         return 0
 
+
+class ImeTipa(DefinicijaFunkcije):
+
+    def __init__(self,pozicijaUprogramu):
+        self.pozicijaUprogramu = pozicijaUprogramu
+
+    def glavnaMetoda(self):
+
+        return 0
+
+class ListaParametara(DefinicijaFunkcije):
+
+    def __init__(self,pozicijaUprogramu):
+        self.pozicijaUprogramu = pozicijaUprogramu
+
+    def glavnaMetoda(self):
+        desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
+        print desnaStrana
+
+        return 0
 
 
 def ucitajUlaz():
