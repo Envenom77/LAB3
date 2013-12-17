@@ -76,8 +76,6 @@ class PrijevodnaJedinica(object):
             rezultat = vanjska_deklaracija.glavnaMetoda()
             if rezultat != 0:
                 return rezultat
-        else:
-            return "ERROR - losa desna strana prijevodne jedinice"
 
         #ako sve u redu vrati 0
         return 0
@@ -88,6 +86,14 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def glavnaMetoda(self):
+
+        desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
+        print desnaStrana
+
+        if desnaStrana[0][0] == "<definicija_funkcije>":
+            pass
+        else:
+            pass
 
         return 0
 
