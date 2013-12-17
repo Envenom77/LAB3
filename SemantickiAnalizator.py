@@ -1,8 +1,9 @@
 __author__ = 'Matko'
 
-listaPrograma = []
 
 class PrijevodnaJedinica(object):
+
+    listaPrograma = []
 
     def __init__(self, pozicijaUprogramu):
         self.pozicijaUprogramu = pozicijaUprogramu
@@ -53,6 +54,8 @@ class PrijevodnaJedinica(object):
 
     def glavnaMetoda(self):
 
+        self.listaPrograma = ucitajUlaz()
+
         #nalazi svoju desnu stranu preko matode koja nalazi desnu stranu
         #poznavajuci samo indeks u listi programa
         #tako ce se metoda nadiDesnuStranu moci koristit od strane svih objekata koji ju naslijede
@@ -90,20 +93,17 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
 
         return 0
 
- def ucitajUlaz():
-        ulaz = open("ulaz1.in","r")
-        listaPrograma = ulaz.readlines()
 
-        #makni LF
-        for i in range(len(listaPrograma)):
-            listaPrograma[i] = listaPrograma[i].rstrip()
-        return listaPrograma
+def ucitajUlaz():
+    ulaz = open("ulaz1.in","r")
+    listaPrograma = ulaz.readlines()
+
+    #makni LF
+    for i in range(len(listaPrograma)):
+        listaPrograma[i] = listaPrograma[i].rstrip()
+    return listaPrograma
 
 def main ():
-
-    global listaPrograma
-
-    listaPrograma = ucitajUlaz()
 
     #stvori inicijalni objekt
     prijevodna_jedinica = PrijevodnaJedinica(0)
