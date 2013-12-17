@@ -109,15 +109,20 @@ class DefinicijaFunkcije(VanjskaDeklaracija):
 
     def glavnaMetoda(self):
         desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
-        print desnaStrana
 
         if desnaStrana[2][0] == "<lista_parametara>":
+
+            #tu jos ide kod
+
             lista_parametara = ListaParametara(desnaStrana[2][1])
             rezultat = lista_parametara.glavnaMetoda()
             if rezultat != 0:
                 return rezultat
         else:
-            pass
+            ime_tipa = ImeTipa(desnaStrana[0][1])
+            rezultat = ime_tipa.glavnaMetoda()
+            if rezultat != 0:
+                return rezultat
 
         return 0
 
@@ -137,6 +142,15 @@ class ImeTipa(DefinicijaFunkcije):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def glavnaMetoda(self):
+        desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
+
+        if desnaStrana[0][0] == "<specifikator_tipa>":
+            specifikator_tipa = SpecifikatorTipa(desnaStrana[0][1])
+            rezultat = specifikator_tipa.glavnaMetoda()
+            if rezultat != 0:
+                return rezultat
+        else:
+            pass
 
         return 0
 
@@ -148,6 +162,16 @@ class ListaParametara(DefinicijaFunkcije):
     def glavnaMetoda(self):
         desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
         print desnaStrana
+
+        return 0
+
+class SpecifikatorTipa(ImeTipa):
+
+    def __init__(self,pozicijaUprogramu):
+        self.pozicijaUprogramu = pozicijaUprogramu
+
+    def glavnaMetoda(self):
+        desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
 
         return 0
 
