@@ -91,11 +91,37 @@ class VanjskaDeklaracija(PrijevodnaJedinica):
         print desnaStrana
 
         if desnaStrana[0][0] == "<definicija_funkcije>":
-            pass
+            definicija_funkcije = DefinicijaFunkcije(desnaStrana[0][1])
+            rezultat = definicija_funkcije.glavnaMetoda()
+            if rezultat != 0:
+                return rezultat
         else:
-            pass
+            deklaracija = Deklaracija(desnaStrana[0][1])
+            rezultat = deklaracija.glavnaMetoda()
+            if rezultat != 0:
+                return rezultat
 
         return 0
+
+
+class DefinicijaFunkcije(VanjskaDeklaracija):
+
+    def __init__(self,pozicijaUprogramu):
+        self.pozicijaUprogramu = pozicijaUprogramu
+
+    def glavnaMetoda(self):
+
+        return 0
+
+class Deklaracija(VanjskaDeklaracija):
+
+    def __init__(self,pozicijaUprogramu):
+        self.pozicijaUprogramu = pozicijaUprogramu
+
+    def glavnaMetoda(self):
+
+        return 0
+
 
 
 def ucitajUlaz():
