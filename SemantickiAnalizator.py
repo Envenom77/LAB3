@@ -172,6 +172,8 @@ class SpecifikatorTipa(ImeTipa):
 
     def glavnaMetoda(self):
         desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
+        print desnaStrana
+
 
         return 0
 
