@@ -124,9 +124,25 @@ class AditivniIzraz(JednakosniIzraz):
         self.pozicijaUprogramu = pozicijaUprogramu
 
     def glavnaMetoda(self):
-        tmp = []
-        tmp.append(0)
-        tmp.append(0)
+        desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
+        
+        if desnaStrana[0][0] == "<multiplikativni_izraz>":
+            multiplikativni_izraz = MultiplikativniIzraz(desnaStrana[0][1])
+            rez = multiplikativni_izraz.glavnaMetoda()
+            return rez
+            
+        elif desnaStrana[0][0] == "<aditivni_izraz>" and desnaStrana[2][0] == "<multiplikativni_izraz>":
+            aditivni_izraz = AditivniIzraz(desnaStrana[0][1])
+            rez = aditivni_izraz.glavnaMetoda()
+            
+            multiplikativni_izraz = MultiplikativniIzraz(desnaStrana[0][1])
+            rez1 = multiplikativni_izraz.glavnaMetoda()
+            
+            if rez[0] == 0 and rez1[0] == 0:
+                tmp = []
+                tmp.append(0)
+                tmp.append(0)
+                return tmp
 
         return 0
 
