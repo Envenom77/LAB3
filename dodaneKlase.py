@@ -311,3 +311,30 @@ class PrimarniIzraz(PostfiksIzraz):
         tmp.append(0)
 
         return 0
+
+    
+class Izraz(Inicijalizator):
+    def __init__(self,pozicijaUprogramu):
+        self.pozicijaUprogramu = pozicijaUprogramu
+
+    def glavnaMetoda(self):
+        desnaStrana = nadiDesnuStranu(self.pozicijaUprogramu)
+        
+        if desnaStrana[0][0] == "<izraz_pridruzivanja>":
+            izraz_pridruzivanja= IzrazPridruzivanja(desnaStrana[0][1])
+            rez = IzrazPridruzivanja.glavnaMetoda()
+            return rez
+
+        elif desnaStrana[0][0] =="<izraz>":
+            postfiks_izraz = Izraz(desnaStrana[0][1])
+            rez = Izraz.glavnaMetoda()
+           
+            izraz_pridruzivanja = IzrazPridruzivanja(desnaStrana[0][1] - 1)
+            rez1 = izraz_pridruzivanja.glavnaMetoda()
+            if rez[1] == 0 and rez1[1] == rez[1]:
+                tmp = []
+                tmp.append(rez1[1])
+                tmp.append(0)
+                return tmp
+
+        return 0
